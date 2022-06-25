@@ -13,6 +13,7 @@ export default {
     googleSignIn() {
       const provider = new GoogleAuthProvider();
       const auth = new getAuth();
+
       signInWithPopup(auth, provider)
         .then((result) => {
           const credential = GoogleAuthProvider.credentialFromResult(result);
