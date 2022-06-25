@@ -1,0 +1,35 @@
+<template>
+  <NavbarComponent />
+  <router-view />
+</template>
+
+<script>
+import NavbarComponent from "./components/NavbarComponent.vue";
+
+// Import the functions you need from the SDKs you need
+import { initializeApp } from "firebase/app";
+
+// Your web app's Firebase configuration
+const firebaseConfig = {
+  apiKey: "AIzaSyCNwG-MwrePJmSTjWx55tb_dNly1P3p3Gc",
+  authDomain: "vue-bookshelf-dbee5.firebaseapp.com",
+  projectId: "vue-bookshelf-dbee5",
+  storageBucket: "vue-bookshelf-dbee5.appspot.com",
+  messagingSenderId: "28834925468",
+  appId: "1:28834925468:web:4d195aeb6f37f2f58d5659",
+};
+
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
+
+export default {
+  data: () => {
+    return {
+      app: app,
+    };
+  },
+  components: {
+    NavbarComponent,
+  },
+};
+</script>
