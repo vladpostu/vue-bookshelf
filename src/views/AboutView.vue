@@ -9,26 +9,29 @@
 </template>
 
 <script>
+// import { collection, addDoc } from "firebase/firestore";
 import { db } from "./../App.vue";
-import { collection, addDoc } from "firebase/firestore";
 
 export default {
+  name: "AboutView",
   methods: {
     insert(event) {
       event.preventDefault();
-      console.log(db);
-      add();
 
-      async function add() {
-        try {
-          const docRef = await addDoc(collection(db, "users"), {
-            name: "Margherita",
-          });
-          console.log(docRef.id);
-        } catch (error) {
-          console.log(error);
-        }
-      }
+      console.log(db);
+
+      // add();
+
+      // async function add() {
+      //   try {
+      //     const docRef = await addDoc(collection(db, "users"), {
+      //       name: "Margherita",
+      //     });
+      //     console.log(docRef.id);
+      //   } catch (error) {
+      //     console.log(error);
+      //   }
+      // }
     },
   },
 };

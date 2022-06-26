@@ -16,13 +16,12 @@ export default {
 
       signInWithPopup(auth, provider)
         .then((result) => {
-          const credential = GoogleAuthProvider.credentialFromResult(result);
-          const token = credential.accessToken;
           const user = result.user;
 
-          console.log(token, user);
+          if (user != null) {
+            this.$router.push("/about");
+          }
         })
-        .then(this.$router.push("/about"))
         .catch((error) => {
           console.log(error);
         });

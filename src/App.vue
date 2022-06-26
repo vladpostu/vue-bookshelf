@@ -25,10 +25,11 @@ const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
 export default {
+  name: "App",
   data() {
     return {
       app: app,
-      db: db,
+      db: { db },
     };
   },
   components: {
