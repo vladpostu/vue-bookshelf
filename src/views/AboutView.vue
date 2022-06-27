@@ -2,34 +2,39 @@
   <div class="about">
     <h1>Insert data</h1>
     <form @submit.prevent="insert">
-      <label for=""></label>
-      <input type="text" v-model="name" />
+      <label>Name</label> <br />
+      <input type="text" v-model="books.name" />
       <button>invia</button>
     </form>
   </div>
 </template>
 
 <script>
+import { getAuth } from "firebase/auth";
 import { collection, addDoc } from "firebase/firestore";
 import { db } from "./../App.vue";
 
+const auth = getAuth();
+
 export default {
   name: "AboutView",
+  data() {
+    return {
+      books: {
+        name: "",
+      },
+    };
+  },
   methods: {
-    insert(event) {
-      event.preventDefault();
-      this.name = { name };
-      add();
-
-      async function add() {
-        try {
-          const docRef = await addDoc(collection(db, "users"), {
-            name: this.name,
-          });
-          console.log(docRef.id);
-        } catch (error) {
-          console.log(error);
-        }
+    insert() {
+      try {
+        const docRef = addDoc(collection(db, "books"), {
+          userId: auth.currentUser.uid,
+          name: this.books.name,
+        });
+        console.log(docRef.id);
+      } catch (error) {
+        console.log(error);
       }
     },
   },
