@@ -2,6 +2,7 @@
   <div class="about">
     <h1>Insert data</h1>
     <form @submit.prevent="insert">
+      <label for=""></label>
       <input type="text" v-model="name" />
       <button>invia</button>
     </form>
@@ -9,7 +10,7 @@
 </template>
 
 <script>
-// import { collection, addDoc } from "firebase/firestore";
+import { collection, addDoc } from "firebase/firestore";
 import { db } from "./../App.vue";
 
 export default {
@@ -17,21 +18,19 @@ export default {
   methods: {
     insert(event) {
       event.preventDefault();
+      this.name = { name };
+      add();
 
-      console.log(db);
-
-      // add();
-
-      // async function add() {
-      //   try {
-      //     const docRef = await addDoc(collection(db, "users"), {
-      //       name: "Margherita",
-      //     });
-      //     console.log(docRef.id);
-      //   } catch (error) {
-      //     console.log(error);
-      //   }
-      // }
+      async function add() {
+        try {
+          const docRef = await addDoc(collection(db, "users"), {
+            name: this.name,
+          });
+          console.log(docRef.id);
+        } catch (error) {
+          console.log(error);
+        }
+      }
     },
   },
 };

@@ -26,14 +26,10 @@ const db = getFirestore(app);
 
 export default {
   name: "App",
-  data() {
-    return {
-      app: app,
-      db: { db },
-    };
-  },
   components: {
     NavbarComponent,
   },
 };
+
+export { db };
 </script>
