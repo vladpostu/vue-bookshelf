@@ -6,12 +6,13 @@
       <input type="text" v-model="books.name" />
       <button>invia</button>
     </form>
+    <button @click="retrive">retrive</button>
   </div>
 </template>
 
 <script>
 import { getAuth } from "firebase/auth";
-import { collection, addDoc } from "firebase/firestore";
+import { collection, addDoc, doc, getDoc } from "firebase/firestore";
 import { db } from "./../App.vue";
 
 const auth = getAuth();
@@ -36,6 +37,12 @@ export default {
       } catch (error) {
         console.log(error);
       }
+    },
+    async retrive() {
+      const docRef = doc(db, "books", "3ynwgRq1Ppk7t4DVy6D3");
+      const docSnap = await getDoc(docRef);
+
+      console.log(docSnap.data());
     },
   },
 };
