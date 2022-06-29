@@ -1,19 +1,18 @@
 <template>
   <div class="about">
-    <h1>Insert data</h1>
-    <form @submit.prevent="insert">
-      <label>Name</label> <br />
-      <input type="text" v-model="books.name" />
-      <button>invia</button>
-    </form>
+    <div>{{ this.currentUser.name }}</div>
+
     <button @click="retrive">retrive</button>
+    <BookComponent title="Master and Margarita" />
   </div>
 </template>
 
 <script>
 import { getAuth } from "firebase/auth";
-import { collection, addDoc, doc, getDoc } from "firebase/firestore";
+import { collection, getDocs } from "firebase/firestore";
+import { query, where } from "firebase/firestore";
 import { db } from "./../App.vue";
+import BookComponent from "./../components/BookComponent.vue";
 
 const auth = getAuth();
 
@@ -21,29 +20,28 @@ export default {
   name: "AboutView",
   data() {
     return {
-      books: {
-        name: "",
+      currentUser: {
+        uid: auth.currentUser.uid.toString(),
+        name: auth.currentUser.displayName.toString(),
       },
     };
   },
   methods: {
-    insert() {
-      try {
-        const docRef = addDoc(collection(db, "books"), {
-          userId: auth.currentUser.uid,
-          name: this.books.name,
-        });
-        console.log(docRef.id);
-      } catch (error) {
-        console.log(error);
-      }
-    },
     async retrive() {
-      const docRef = doc(db, "books", "3ynwgRq1Ppk7t4DVy6D3");
-      const docSnap = await getDoc(docRef);
+      const booksRef = collection(db, "books");
+      const q = query(
+        booksRef,
+        where("userId", "==", "UhiHc5OOOpb2pXmSUrGiNbGr5Ap1")
+      );
 
-      console.log(docSnap.data());
+      const querySnapshot = await getDocs(q);
+      querySnapshot.forEach((snap) => {
+        console.log(snap.data());
+      });
     },
+  },
+  components: {
+    BookComponent,
   },
 };
 </script>
