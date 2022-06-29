@@ -9,8 +9,14 @@ const store = createStore({
       state.accessToken = accessToken;
     },
   },
+  actions: {
+    accessToken(context, accessToken) {
+      context.commit("SET_ACCESS_TOKEN", accessToken);
+      console.log(accessToken);
+    },
+  },
   getters: {
-    accessToken: (state) => {
+    accessToken: function (state) {
       return state.accessToken;
     },
   },

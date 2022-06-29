@@ -8,7 +8,7 @@
 </template>
 
 <script>
-import { getAuth } from "firebase/auth";
+import { getAuth, signInWithCustomToken } from "firebase/auth";
 import { collection, getDocs } from "firebase/firestore";
 import { query, where } from "firebase/firestore";
 import { db } from "./../App.vue";
@@ -26,6 +26,20 @@ export default {
       },
     };
   },
+  beforeMount() {
+    if (this.currentUser) {
+      console.log("dentro");
+    } else {
+      if (this.$store.getters.accessToken) {
+        signInWithCustomToken(this.$store.getters.accessToken);
+      }
+    }
+  },
+  setup() {
+    const auth = getAuth();
+    return auth;
+  },
+
   methods: {
     async retrive() {
       const booksRef = collection(db, "books");

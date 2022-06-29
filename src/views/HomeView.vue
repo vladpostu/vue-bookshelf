@@ -1,7 +1,7 @@
 <template>
   <div class="home">
     <button @click="googleSignIn">Login with google</button>
-    <div>{{ $store.getters.accessToken }}</div>
+    <div>{{ $store.state.accessToken }}</div>
   </div>
 </template>
 
@@ -13,10 +13,17 @@ export default {
     googleSignIn() {
       const provider = new GoogleAuthProvider();
       const auth = getAuth();
+
       signInWithPopup(auth, provider).then((result) => {
         const credential = GoogleAuthProvider.credentialFromResult(result);
         const accessToken = credential.accessToken;
-        console.log(accessToken);
+        this.$store.dispatch("accessToken", accessToken);
+
+        if (auth.currentUser) {
+          this.$router.push("/about");
+        } else {
+          this.$router.push("/");
+        }
       });
     },
   },
