@@ -21,25 +21,23 @@ export default {
   data() {
     return {
       currentUser: {
-        uid: auth.currentUser.uid.toString(),
-        name: auth.currentUser.displayName.toString(),
+        accessToken: this.$store.state.accessToken,
+        uid: "",
+        name: "",
       },
     };
   },
   beforeMount() {
-    if (this.currentUser) {
-      console.log("dentro");
+    if (auth.currentUser) {
+      console.log(auth);
     } else {
-      if (this.$store.getters.accessToken) {
-        signInWithCustomToken(this.$store.getters.accessToken);
-      }
+      signInWithCustomToken(auth, this.accessToken).then((credential) => {
+        const user = credential.user;
+        this.currentUser.uid = user.uid;
+        this.currentUser.name = user.displayName;
+      });
     }
   },
-  setup() {
-    const auth = getAuth();
-    return auth;
-  },
-
   methods: {
     async retrive() {
       const booksRef = collection(db, "books");

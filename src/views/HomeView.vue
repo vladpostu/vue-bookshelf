@@ -14,6 +14,8 @@ export default {
       const provider = new GoogleAuthProvider();
       const auth = getAuth();
 
+      provider.addScope("https://www.googleapis.com/auth/cloud-platform");
+
       signInWithPopup(auth, provider).then((result) => {
         const credential = GoogleAuthProvider.credentialFromResult(result);
         const accessToken = credential.accessToken;
