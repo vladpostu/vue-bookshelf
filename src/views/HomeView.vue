@@ -9,20 +9,18 @@
 import { GoogleAuthProvider, getAuth, signInWithPopup } from "firebase/auth";
 
 export default {
+  name: "HomeView",
   methods: {
     googleSignIn() {
       const provider = new GoogleAuthProvider();
       const auth = getAuth();
 
-      provider.addScope("https://www.googleapis.com/auth/cloud-platform");
-
       signInWithPopup(auth, provider).then((result) => {
-        const credential = GoogleAuthProvider.credentialFromResult(result);
-        const accessToken = credential.accessToken;
+        
         this.$store.dispatch("accessToken", accessToken);
 
         if (auth.currentUser) {
-          this.$router.push("/about");
+          this.$router.push("/my-books");
         } else {
           this.$router.push("/");
         }

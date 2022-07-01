@@ -8,35 +8,23 @@
 </template>
 
 <script>
-import { getAuth, signInWithCustomToken } from "firebase/auth";
+// import { getAuth } from "firebase/auth";
 import { collection, getDocs } from "firebase/firestore";
 import { query, where } from "firebase/firestore";
-import { db } from "./../App.vue";
-import BookComponent from "./../components/BookComponent.vue";
+import { db } from "../App.vue";
+import BookComponent from "../components/BookComponent.vue";
 
-const auth = getAuth();
+// const auth = getAuth();
 
 export default {
-  name: "AboutView",
+  name: "MyBooksView",
   data() {
     return {
       currentUser: {
-        accessToken: this.$store.state.accessToken,
         uid: "",
         name: "",
       },
     };
-  },
-  beforeMount() {
-    if (auth.currentUser) {
-      console.log(auth);
-    } else {
-      signInWithCustomToken(auth, this.accessToken).then((credential) => {
-        const user = credential.user;
-        this.currentUser.uid = user.uid;
-        this.currentUser.name = user.displayName;
-      });
-    }
   },
   methods: {
     async retrive() {

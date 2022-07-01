@@ -1,5 +1,7 @@
 import { createRouter, createWebHistory } from "vue-router";
 import HomeView from "../views/HomeView.vue";
+import { getAuth, signInWithCustomToken } from "firebase/auth";
+import { store } from "./../store";
 
 const routes = [
   {
@@ -8,19 +10,32 @@ const routes = [
     component: HomeView,
   },
   {
-    path: "/about",
-    name: "about",
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () =>
-      import(/* webpackChunkName: "about" */ "../views/AboutView.vue"),
+    path: "/my-books",
+    name: "my-books",
+    meta: {
+      authRequired: true,
+    },
+    component: () => import("../views/MyBooksView.vue"),
   },
 ];
 
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
   routes,
+});
+
+router.beforeEach((to, from, next) => {
+  const auth = getAuth();
+
+  if (to.matched.some((record) => record.meta.authRequired)) {
+    if (auth.currentUser) {
+      next();
+    } else {
+      signInWithCustomToken(auth, store.state.accessToken);
+    }
+  } else {
+    next();
+  }
 });
 
 export default router;

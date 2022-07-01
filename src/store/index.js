@@ -1,8 +1,9 @@
 import { createStore } from "vuex";
+import createPersistedState from "vuex-persistedstate";
 
 const store = createStore({
   state: {
-    accessToken: "aa",
+    accessToken: "",
   },
   mutations: {
     SET_ACCESS_TOKEN(state, accessToken) {
@@ -12,7 +13,6 @@ const store = createStore({
   actions: {
     accessToken(context, accessToken) {
       context.commit("SET_ACCESS_TOKEN", accessToken);
-      console.log(accessToken);
     },
   },
   getters: {
@@ -20,6 +20,7 @@ const store = createStore({
       return state.accessToken;
     },
   },
+  plugins: [createPersistedState()],
 });
 
 export { store };
