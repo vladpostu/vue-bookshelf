@@ -8,6 +8,11 @@ import NavbarComponent from "./components/NavbarComponent.vue";
 
 import { initializeApp } from "firebase/app";
 import { getFirestore } from "firebase/firestore";
+import {
+  setPersistence,
+  getAuth,
+  browserLocalPersistence,
+} from "@firebase/auth";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
@@ -22,6 +27,9 @@ const firebaseConfig = {
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
+
+const auth = getAuth();
+setPersistence(auth, browserLocalPersistence);
 
 export default {
   name: "App",

@@ -3,21 +3,21 @@ import createPersistedState from "vuex-persistedstate";
 
 const store = createStore({
   state: {
-    accessToken: "",
+    auth: Object,
   },
   mutations: {
-    SET_ACCESS_TOKEN(state, accessToken) {
-      state.accessToken = accessToken;
+    SET_AUTH(state, auth) {
+      state.auth = auth;
     },
   },
   actions: {
-    accessToken(context, accessToken) {
-      context.commit("SET_ACCESS_TOKEN", accessToken);
+    setAuth(context, auth) {
+      context.commit("SET_AUTH", auth);
     },
   },
   getters: {
-    accessToken: function (state) {
-      return state.accessToken;
+    auth: function (state) {
+      return state.auth;
     },
   },
   plugins: [createPersistedState()],

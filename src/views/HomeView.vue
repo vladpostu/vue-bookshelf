@@ -6,7 +6,7 @@
 </template>
 
 <script>
-import { GoogleAuthProvider, getAuth, signInWithPopup } from "firebase/auth";
+import { getAuth, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 
 export default {
   name: "HomeView",
@@ -15,10 +15,7 @@ export default {
       const provider = new GoogleAuthProvider();
       const auth = getAuth();
 
-      signInWithPopup(auth, provider).then((result) => {
-        
-        this.$store.dispatch("accessToken", accessToken);
-
+      signInWithPopup(auth, provider).then(() => {
         if (auth.currentUser) {
           this.$router.push("/my-books");
         } else {

@@ -30,8 +30,11 @@ router.beforeEach((to, from, next) => {
   if (to.matched.some((record) => record.meta.authRequired)) {
     if (auth.currentUser) {
       next();
+      console.log(auth.currentUser);
     } else {
-      signInWithCustomToken(auth, store.state.accessToken);
+      signInWithCustomToken(auth, store.state.credential);
+      next();
+      console.log(auth.currentUser);
     }
   } else {
     next();
