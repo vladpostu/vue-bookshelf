@@ -3,21 +3,26 @@ import createPersistedState from "vuex-persistedstate";
 
 const store = createStore({
   state: {
-    auth: Object,
+    isAuthenticated: Boolean,
+    currentUser: Object,
   },
   mutations: {
-    SET_AUTH(state, auth) {
-      state.auth = auth;
+    SET_CURRENT_USER(state, user) {
+      state.currentUser = user;
+    },
+    SET_AUTHENTICATED(state, condition) {
+      state.isAuthenticated = condition;
     },
   },
   actions: {
-    setAuth(context, auth) {
-      context.commit("SET_AUTH", auth);
+    setCurrentUser(context, user) {
+      context.commit("SET_CURRENT_USER", user);
+      context.commit("SET_AUTHENTICATED", true);
     },
   },
   getters: {
-    auth: function (state) {
-      return state.auth;
+    currentUser: function (state) {
+      return state.currentUser;
     },
   },
   plugins: [createPersistedState()],

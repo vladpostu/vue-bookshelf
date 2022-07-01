@@ -1,6 +1,6 @@
 <template>
   <div class="about">
-    <div>{{ this.currentUser.name }}</div>
+    <div>{{ this.currentUser.displayName }}</div>
 
     <button @click="retrive">retrive</button>
     <BookComponent title="Master and Margarita" />
@@ -14,20 +14,16 @@ import { query, where } from "firebase/firestore";
 import { db } from "../App.vue";
 import BookComponent from "../components/BookComponent.vue";
 
-// const auth = getAuth();
-
 export default {
   name: "MyBooksView",
   data() {
     return {
-      currentUser: {
-        uid: "",
-        name: "",
-      },
+      currentUser: this.$store.getters.currentUser,
     };
   },
   methods: {
     async retrive() {
+      console.log();
       const booksRef = collection(db, "books");
       const q = query(
         booksRef,

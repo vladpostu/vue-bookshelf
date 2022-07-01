@@ -1,7 +1,6 @@
 <template>
   <div class="home">
     <button @click="googleSignIn">Login with google</button>
-    <div>{{ $store.state.accessToken }}</div>
   </div>
 </template>
 
@@ -15,7 +14,11 @@ export default {
       const provider = new GoogleAuthProvider();
       const auth = getAuth();
 
-      signInWithPopup(auth, provider).then(() => {
+      signInWithPopup(auth, provider).then((result) => {
+        const user = result.user;
+        console.log(user);
+        this.$store.dispatch("setCurrentUser", user);
+
         if (auth.currentUser) {
           this.$router.push("/my-books");
         } else {

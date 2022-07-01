@@ -1,7 +1,7 @@
 import { createRouter, createWebHistory } from "vue-router";
 import HomeView from "../views/HomeView.vue";
-import { getAuth, signInWithCustomToken } from "firebase/auth";
-import { store } from "./../store";
+// import { getAuth, signInWithCustomToken } from "firebase/auth";
+// import { store } from "./../store";
 
 const routes = [
   {
@@ -24,21 +24,21 @@ const router = createRouter({
   routes,
 });
 
-router.beforeEach((to, from, next) => {
-  const auth = getAuth();
+// router.beforeEach((to, from, next) => {
+//   const auth = getAuth();
 
-  if (to.matched.some((record) => record.meta.authRequired)) {
-    if (auth.currentUser) {
-      next();
-      console.log(auth.currentUser);
-    } else {
-      signInWithCustomToken(auth, store.state.credential);
-      next();
-      console.log(auth.currentUser);
-    }
-  } else {
-    next();
-  }
-});
+//   if (to.matched.some((record) => record.meta.authRequired)) {
+//     if (auth.currentUser) {
+//       next();
+//       console.log(auth.currentUser);
+//     } else {
+//       signInWithCustomToken(auth, store.state.credential);
+//       next();
+//       console.log(auth.currentUser);
+//     }
+//   } else {
+//     next();
+//   }
+// });
 
 export default router;
