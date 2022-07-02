@@ -7,6 +7,8 @@
 
 <script>
 import BookComponent from "../components/BookComponent.vue";
+// import { collection, getDocs, query, where } from "firebase/firestore";
+// import { db } from "./../App.vue";
 
 export default {
   name: "MyBooksView",
