@@ -15,14 +15,17 @@ const store = createStore({
     },
   },
   actions: {
-    setCurrentUser(context, user) {
+    setCurrentUser(context, user, condition) {
+      context.commit("SET_AUTHENTICATED", condition);
       context.commit("SET_CURRENT_USER", user);
-      context.commit("SET_AUTHENTICATED", true);
     },
   },
   getters: {
     currentUser: function (state) {
       return state.currentUser;
+    },
+    isAuthenticated: function (state) {
+      return state.isAuthenticated;
     },
   },
   plugins: [createPersistedState()],

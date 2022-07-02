@@ -40,3 +40,10 @@ export default {
 
 export { db };
 </script>
+
+<style>
+.main-content {
+  margin: auto;
+  width: 90% !important;
+}
+</style>

@@ -17,6 +17,11 @@ const routes = [
     },
     component: () => import("../views/MyBooksView.vue"),
   },
+  {
+    path: "/insert-new-book",
+    name: "insert-new-book",
+    component: () => import("../views/InsertNewBookView.vue"),
+  },
 ];
 
 const router = createRouter({
