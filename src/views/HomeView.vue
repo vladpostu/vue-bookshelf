@@ -16,14 +16,11 @@ export default {
 
       signInWithPopup(auth, provider).then((result) => {
         const user = result.user;
-        console.log(user);
 
-        if (auth.currentUser) {
-          this.$store.dispatch("setCurrentUser", user, true);
-          this.$router.go("/my-books");
-        } else {
-          this.$router.push("/");
-        }
+        this.$store.dispatch("setCurrentUser", user);
+        this.$store.dispatch("setAuthenticated", true);
+
+        this.$router.push("/my-books");
       });
     },
   },

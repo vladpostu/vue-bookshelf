@@ -24,7 +24,6 @@ export default {
   },
   async mounted() {
     await this.retriveMyBooks();
-    console.log(this.books);
   },
   methods: {
     async retriveMyBooks() {

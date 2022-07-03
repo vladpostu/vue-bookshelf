@@ -51,9 +51,9 @@ export default {
           summary: this.book.summary,
           userId: this.book.userId,
         });
-        console.log("Insert with ID: " + docRef.id);
+        console.log("Insert with ID: " + docRef);
       } catch (error) {
-        console.log(error);
+        return error;
       }
     },
   },

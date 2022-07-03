@@ -7,11 +7,15 @@
           Insert new book
         </div>
         <div @click="this.$router.push('/my-books')">My Books</div>
-        <div
-          @click="signOut"
-          :class="this.$store.getters.isAuthenticated ? 'logged' : ''"
-        >
-          Sign out
+        <div>
+          <i
+            @click="
+              this.$store.getters.isAuthenticated
+                ? this.$router.push('/profile')
+                : this.$router.push('/')
+            "
+            class="fa-solid fa-user"
+          ></i>
         </div>
       </div>
     </div>
@@ -27,14 +31,15 @@ export default {
     signOut() {
       const auth = getAuth();
 
+      this.$store.dispatch("setCurrentUser", {});
+      this.$store.dispatch("setAuthenticated", false);
+
       if (auth.currentUser) {
         signOut(auth);
         this.$router.push("/");
       } else {
         this.$router.push("/");
       }
-
-      this.$store.dispatch("setCurrentUser", Object, false);
     },
   },
 };
@@ -52,6 +57,7 @@ export default {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  align-items: center;
 }
 
 .links {

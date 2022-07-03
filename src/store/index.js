@@ -3,8 +3,8 @@ import createPersistedState from "vuex-persistedstate";
 
 const store = createStore({
   state: {
-    isAuthenticated: Boolean,
-    currentUser: Object,
+    isAuthenticated: false,
+    currentUser: {},
   },
   mutations: {
     SET_CURRENT_USER(state, user) {
@@ -15,9 +15,11 @@ const store = createStore({
     },
   },
   actions: {
-    setCurrentUser(context, user, condition) {
-      context.commit("SET_AUTHENTICATED", condition);
-      context.commit("SET_CURRENT_USER", user);
+    setCurrentUser({ commit }, user) {
+      commit("SET_CURRENT_USER", user);
+    },
+    setAuthenticated({ commit }, state) {
+      commit("SET_AUTHENTICATED", state);
     },
   },
   getters: {

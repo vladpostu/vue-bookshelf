@@ -1,7 +1,7 @@
 import { createRouter, createWebHistory } from "vue-router";
 import HomeView from "../views/HomeView.vue";
 // import { getAuth, signInWithCustomToken } from "firebase/auth";
-// import { store } from "./../store";
+import { store } from "./../store";
 
 const routes = [
   {
@@ -20,7 +20,18 @@ const routes = [
   {
     path: "/insert-new-book",
     name: "insert-new-book",
+    meta: {
+      authRequired: true,
+    },
     component: () => import("../views/InsertNewBookView.vue"),
+  },
+  {
+    path: "/profile",
+    name: "profle",
+    meta: {
+      authRequired: true,
+    },
+    component: () => import("./../views/ProfileView.vue"),
   },
 ];
 
@@ -29,21 +40,18 @@ const router = createRouter({
   routes,
 });
 
-// router.beforeEach((to, from, next) => {
-//   const auth = getAuth();
-
-//   if (to.matched.some((record) => record.meta.authRequired)) {
-//     if (auth.currentUser) {
-//       next();
-//       console.log(auth.currentUser);
-//     } else {
-//       signInWithCustomToken(auth, store.state.credential);
-//       next();
-//       console.log(auth.currentUser);
-//     }
-//   } else {
-//     next();
-//   }
-// });
+router.beforeEach((to, from, next) => {
+  if (to.matched.some((record) => record.meta.authRequired)) {
+    if (store.getters.isAuthenticated) {
+      next();
+    } else {
+      next({
+        path: "/",
+      });
+    }
+  } else {
+    next();
+  }
+});
 
 export default router;
