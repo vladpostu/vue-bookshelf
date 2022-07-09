@@ -33,6 +33,14 @@ const routes = [
     },
     component: () => import("./../views/ProfileView.vue"),
   },
+  {
+    path: "/book/:id",
+    name: "book",
+    meta: {
+      authRequired: true,
+    },
+    component: () => import("./../views/BookView.vue"),
+  },
 ];
 
 const router = createRouter({

@@ -4,6 +4,7 @@
     <BookComponent
       v-for="(book, i) in this.books"
       :key="i"
+      :id="book.id"
       :title="book.title"
     />
   </div>
@@ -31,7 +32,11 @@ export default {
 
       const querySnapshot = await getDocs(q);
       querySnapshot.forEach((doc) => {
-        this.books.push(doc.data());
+        let book = {
+          id: doc.id,
+          title: doc.data().title,
+        };
+        this.books.push(book);
       });
     },
   },
