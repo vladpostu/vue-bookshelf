@@ -1,12 +1,20 @@
 <template>
   <nav class="navbar">
     <div class="navbar-content">
-      <div class="" id="project_name">vue-bookshelf</div>
+      <div
+        class="fw-bold pointer"
+        id="project_name"
+        @click="this.$router.push('/')"
+      >
+        vue-bookshelf
+      </div>
       <div class="links">
-        <div @click="this.$router.push('/insert-new-book')">
-          Insert new book
+        <div class="pointer" @click="this.$router.push('/insert-new-book')">
+          insert new book
         </div>
-        <div @click="this.$router.push('/my-books')">My Books</div>
+        <div class="pointer" @click="this.$router.push('/my-books')">
+          my books
+        </div>
         <div>
           <i
             @click="
@@ -14,7 +22,7 @@
                 ? this.$router.push('/profile')
                 : this.$router.push('/')
             "
-            class="fa-solid fa-user"
+            class="fa-solid fa-user pointer"
           ></i>
         </div>
       </div>
@@ -47,8 +55,8 @@ export default {
 
 <style scoped>
 .navbar {
-  border-bottom: 1px solid black;
   width: 100vw;
+  height: 60px;
 }
 
 .navbar-content {
@@ -57,7 +65,7 @@ export default {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  align-items: center;
+  align-items: baseline;
 }
 
 .links {

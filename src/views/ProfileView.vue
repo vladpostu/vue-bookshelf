@@ -21,6 +21,9 @@ export default {
         signOut(auth);
       }
 
+      this.$store.dispatch("setCurrentUser", {});
+      this.$store.dispatch("setAuthenticated", false);
+
       this.$router.push("/");
     },
   },

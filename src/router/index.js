@@ -57,8 +57,14 @@ router.beforeEach((to, from, next) => {
         path: "/",
       });
     }
-  } else {
-    next();
+  }
+
+  if (to.matched.some((record) => record.path == "/")) {
+    if (store.getters.isAuthenticated) {
+      router.push("/my-books");
+    } else {
+      next();
+    }
   }
 });
 

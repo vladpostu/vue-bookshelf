@@ -42,8 +42,19 @@ export { db };
 </script>
 
 <style>
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", Arial, Helvetica, sans-serif;
+}
+
 .main-content {
   margin: auto;
   width: 90% !important;
+}
+
+.pointer:hover {
+  cursor: pointer;
 }
 </style>
