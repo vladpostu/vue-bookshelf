@@ -2,6 +2,7 @@
   <nav class="navbar">
     <div class="navbar-content">
       <div
+        title="Homepage"
         class="fw-bold pointer"
         id="project_name"
         @click="this.$router.push('/')"
@@ -15,7 +16,7 @@
         <div class="pointer" @click="this.$router.push('/my-books')">
           my books
         </div>
-        <div>
+        <div title="Profile">
           <i
             @click="
               this.$store.getters.isAuthenticated
@@ -74,7 +75,7 @@ export default {
 }
 
 .links > div {
-  margin-left: 1rem;
+  margin-left: 2rem;
 }
 
 .logged {

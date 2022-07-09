@@ -1,6 +1,8 @@
 <template>
-  <NavbarComponent />
-  <router-view />
+  <div class="background">
+    <NavbarComponent />
+    <router-view />
+  </div>
 </template>
 
 <script>
@@ -47,6 +49,7 @@ export { db };
   margin: 0;
   box-sizing: border-box;
   font-family: "Poppins", Arial, Helvetica, sans-serif;
+  color: #333;
 }
 
 .main-content {
@@ -56,5 +59,11 @@ export { db };
 
 .pointer:hover {
   cursor: pointer;
+}
+
+.background {
+  width: 100vw;
+  height: 100vh;
+  background: #fcf8e8;
 }
 </style>
