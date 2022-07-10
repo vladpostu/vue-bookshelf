@@ -34,6 +34,9 @@ export default {
       signInWithPopup(auth, provider).then((result) => {
         const user = result.user;
 
+        var token = GoogleAuthProvider.accessToken;
+        console.log(token);
+
         this.$store.dispatch("setCurrentUser", user);
         this.$store.dispatch("setAuthenticated", true);
 
