@@ -67,21 +67,4 @@ export default {
   flex-wrap: wrap;
   z-index: 2;
 }
-
-.blob-1 {
-  position: absolute;
-  height: 100vh;
-  width: 70%;
-  left: 0;
-  z-index: 1;
-}
-
-.blob-2 {
-  position: absolute;
-  height: 50vh;
-  width: 30%;
-  right: 0;
-  bottom: 0;
-  z-index: 1;
-}
 </style>

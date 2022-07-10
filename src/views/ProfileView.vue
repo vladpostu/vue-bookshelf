@@ -1,7 +1,8 @@
 <template>
   <div class="main-content">
-    <h2>Profile</h2>
-    <button @click="signOut">Sign out</button>
+    <h2 class="mt-4">Profile</h2>
+    <div class="mt-4">{{ this.$store.getters.currentUser.displayName }}</div>
+    <button @click="signOut" class="btn btn-danger mt-3">Sign out</button>
   </div>
 </template>
 

@@ -68,7 +68,7 @@ a {
 button > div > img {
   position: relative;
   width: 35px;
-  background: white;
   border-radius: 50%;
+  background: white;
 }
 </style>
