@@ -37,7 +37,7 @@ Contributors names and contact info
 
 ## License
 
-See the 'LICENSE.txt' file
+See the `LICENSE.txt` file
 
 ## Version History
 
