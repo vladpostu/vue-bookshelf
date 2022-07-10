@@ -35,6 +35,10 @@ Contributors names and contact info
 
 [Vlad Postu](https://github.com/vladpostu)
 
+## License
+
+See the 'LICENSE.txt' file
+
 ## Version History
 
     - Initial Release
