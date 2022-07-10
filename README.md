@@ -16,9 +16,9 @@ To use the Web App:
 
 - [VueJs](https://vuejs.org/) 
 - [Firebase](https://firebase.google.com/)
-- [https://vuex.vuejs.org/](https://vuex.vuejs.org/)
-- [https://getbootstrap.com/](https://getbootstrap.com/)
-- [https://fontawesome.com/icons](https://fontawesome.com/icons)
+- [Vuex](https://vuex.vuejs.org/)
+- [Bootstrap](https://getbootstrap.com/)
+- [Fontawesome](https://fontawesome.com/icons)
 
 
 
