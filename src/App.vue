@@ -1,12 +1,14 @@
 <template>
   <div class="background">
     <NavbarComponent />
+    <GitHubFabComponent />
     <router-view />
   </div>
 </template>
 
 <script>
 import NavbarComponent from "./components/NavbarComponent.vue";
+import GitHubFabComponent from "./components/GitHubFabComponent.vue";
 
 import { initializeApp } from "firebase/app";
 import { getFirestore } from "firebase/firestore";
@@ -37,6 +39,7 @@ export default {
   name: "App",
   components: {
     NavbarComponent,
+    GitHubFabComponent,
   },
 };
 
@@ -55,6 +58,7 @@ export { db };
 .main-content {
   margin: auto;
   width: 90% !important;
+  min-height: 100vh;
 }
 
 .pointer:hover {
@@ -62,8 +66,7 @@ export { db };
 }
 
 .background {
-  width: 100vw;
-  height: 100vh;
+  overflow-x: hidden !important;
   background: #fcf8e8;
 }
 </style>

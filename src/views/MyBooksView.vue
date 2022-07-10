@@ -1,12 +1,26 @@
 <template>
-  <div class="about main-content">
-    <div>{{ this.currentUser.displayName }}'s bookshelf</div>
-    <BookComponent
-      v-for="(book, i) in this.books"
-      :key="i"
-      :id="book.id"
-      :title="book.title"
-    />
+  <div class="">
+    <div class="my-books main-content">
+      <img src="./../assets/images/blob_1.png" class="blob-1" alt="" />
+      <img src="./../assets/images/blob_1.png" class="blob-2" alt="" />
+      <div class="display-3 fw-bold mt-3">
+        <span>{{ this.currentUser.displayName }}'s bookshelf</span>
+        <img
+          src="./../assets/scribbles/scribble.png"
+          alt="scribble"
+          width="40"
+          class="ms-3"
+        />
+      </div>
+      <div class="books-container mt-5">
+        <BookComponent
+          v-for="(book, i) in this.books"
+          :key="i"
+          :id="book.id"
+          :title="book.title"
+        />
+      </div>
+    </div>
   </div>
 </template>
 
@@ -45,3 +59,29 @@ export default {
   },
 };
 </script>
+
+<style>
+.books-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  z-index: 2;
+}
+
+.blob-1 {
+  position: absolute;
+  height: 100vh;
+  width: 70%;
+  left: 0;
+  z-index: 1;
+}
+
+.blob-2 {
+  position: absolute;
+  height: 50vh;
+  width: 30%;
+  right: 0;
+  bottom: 0;
+  z-index: 1;
+}
+</style>

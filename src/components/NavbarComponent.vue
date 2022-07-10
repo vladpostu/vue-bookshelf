@@ -10,10 +10,19 @@
         vue-bookshelf
       </div>
       <div class="links">
-        <div class="pointer" @click="this.$router.push('/insert-new-book')">
-          insert new book
+        <div
+          class="pointer"
+          title="Insert book"
+          @click="this.$router.push('/insert-new-book')"
+        >
+          <i class="fa-solid fa-plus"></i>
+          <span class="ms-2">insert book</span>
         </div>
-        <div class="pointer" @click="this.$router.push('/my-books')">
+        <div
+          class="pointer"
+          title="My books"
+          @click="this.$router.push('/my-books')"
+        >
           my books
         </div>
         <div title="Profile">
@@ -72,10 +81,30 @@ export default {
 .links {
   display: flex;
   flex-direction: row;
+  padding-top: 1rem;
 }
 
 .links > div {
   margin-left: 2rem;
+  border-bottom: 1px solid transparent;
+  position: relative;
+}
+
+.links > div:after {
+  content: "";
+  width: 100%;
+  height: 1.5px;
+  background: transparent;
+  position: absolute;
+  bottom: -35%;
+  left: 50%;
+  transform: translateX(-50%);
+  transition: 0.2s;
+}
+
+.links > div:hover:after {
+  background: #333;
+  bottom: -15%;
 }
 
 .logged {
