@@ -82,6 +82,7 @@ export default {
           title: this.book.title,
           author: this.book.author,
           dateOfPubblish: this.book.dateOfPubblish,
+          rating: this.book.rating,
           summary: this.book.summary,
           userId: this.book.userId,
         });
